@@ -67,6 +67,7 @@ function normalize(s) {
     url: s.url_resolved || s.url,
     url2: s.url,
     favicon: s.favicon || '',
+    homepage: s.homepage || '',
     country: s.country || '',
     countrycode: s.countrycode || '',
     tags: (s.tags || '').split(',').filter(Boolean).slice(0, 3).join(', '),
@@ -90,29 +91,78 @@ function initials(name) {
 function esc(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
-function safeImg(url) {
-  return /^https:\/\//i.test(url) ? url : ''; // http obrázky by na https stránke neprešli
+// ---------- Ikony rádií ----------
+// Skúšame postupne: ikonu z databázy, jej https verziu a nakoniec ikonu z webu rádia.
+const MIN_ICON = 40; // menšie ikony (napr. 16px favicon) by boli rozmazané
+const iconCache = new Map(); // kľúč → url | null (null = nič nefunguje)
+const iconPending = new Map();
+
+function iconCandidates(s) {
+  const out = [];
+  const f = (s.favicon || '').trim();
+  if (/^https:\/\//i.test(f)) out.push(f);
+  else if (/^http:\/\//i.test(f)) out.push(f.replace(/^http:/i, 'https:'));
+  try {
+    const u = new URL(s.homepage || s.url);
+    const host = u.hostname.replace(/^www\./, '');
+    if (host && !/^\d+(\.\d+){3}$/.test(host)) {
+      if (s.homepage) out.push(`https://${u.hostname}/apple-touch-icon.png`);
+      out.push(`https://www.google.com/s2/favicons?domain=${host}&sz=256`);
+    }
+  } catch {}
+  return out;
+}
+const iconKey = (s) => `${s.id}|${s.favicon}|${s.homepage || ''}`;
+
+function probe(url) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.referrerPolicy = 'no-referrer';
+    const t = setTimeout(() => resolve(false), 8000);
+    img.onload = () => { clearTimeout(t); resolve(img.naturalWidth >= MIN_ICON); };
+    img.onerror = () => { clearTimeout(t); resolve(false); };
+    img.src = url;
+  });
 }
 
-/** Vytvorí logo – obrázok, ktorý pri chybe nahradí farebné iniciály. */
+function resolveIcon(s) {
+  const key = iconKey(s);
+  if (iconCache.has(key)) return Promise.resolve(iconCache.get(key));
+  if (!iconPending.has(key)) {
+    iconPending.set(key, (async () => {
+      for (const url of iconCandidates(s)) if (await probe(url)) { iconCache.set(key, url); return url; }
+      iconCache.set(key, null);
+      return null;
+    })());
+  }
+  return iconPending.get(key);
+}
+const knownIcon = (s) => iconCache.get(iconKey(s)); // undefined = ešte nevieme
+
+/** Logo – kým sa ikona nenačíta (alebo ak žiadna nie je), ukazuje farebné iniciály. */
 function logoEl(station, cls = 'logo') {
-  const src = safeImg(station.favicon);
-  const fallback = () => {
-    const d = document.createElement('div');
-    d.className = cls;
-    d.style.background = colorFor(station.name);
-    d.textContent = initials(station.name);
-    return d;
+  const el = document.createElement('div');
+  el.className = cls;
+  const apply = (url) => {
+    // prekryvné prvky (napr. ekvalizér) necháme na mieste
+    [...el.childNodes].forEach((n) => n.nodeType === 3 || n.tagName === 'IMG' ? n.remove() : null);
+    if (url) {
+      el.classList.add('has-img');
+      el.style.background = '';
+      el.style.setProperty('--icon', `url("${url.replace(/"/g, '%22')}")`);
+      el.prepend(Object.assign(document.createElement('img'), { src: url, alt: '', referrerPolicy: 'no-referrer' }));
+    } else {
+      el.style.background = colorFor(station.name);
+      el.prepend(document.createTextNode(initials(station.name)));
+    }
   };
-  if (!src) return fallback();
-  const img = document.createElement('img');
-  img.className = cls;
-  img.loading = 'lazy';
-  img.alt = '';
-  img.referrerPolicy = 'no-referrer';
-  img.src = src;
-  img.onerror = () => img.replaceWith(fallback());
-  return img;
+  const known = knownIcon(station);
+  if (known !== undefined) apply(known);
+  else {
+    apply(null);
+    resolveIcon(station).then((url) => url && apply(url));
+  }
+  return el;
 }
 
 const regionNames = new Intl.DisplayNames(['sk'], { type: 'region' });
@@ -159,18 +209,11 @@ function renderFavs() {
     tile.setAttribute('role', 'button');
 
     const art = logoEl(s, 'art');
-    if (art.tagName === 'IMG') {
-      const wrap = document.createElement('div');
-      wrap.className = 'art';
-      art.className = '';
-      art.onerror = () => { wrap.style.background = colorFor(s.name); wrap.textContent = initials(s.name); };
-      wrap.append(art);
-      tile.append(wrap);
-    } else tile.append(art);
+    art.insertAdjacentHTML('beforeend', '<div class="eq"><i></i><i></i><i></i><i></i></div>');
+    tile.append(art);
 
     tile.insertAdjacentHTML('beforeend',
       `<div class="name">${esc(s.name)}</div>
-       <div class="eq"><i></i><i></i><i></i></div>
        <button class="remove" aria-label="Odstrániť">−</button>
        <button class="move" aria-label="Posunúť dopredu">↖</button>`);
 
@@ -317,7 +360,8 @@ $('#pFav').addEventListener('click', () => state.current && toggleFav(state.curr
 function updateMediaSession() {
   if (!('mediaSession' in navigator) || !state.current) return;
   const s = state.current;
-  const art = safeImg(s.favicon);
+  const art = knownIcon(s);
+  if (art === undefined) resolveIcon(s).then(() => state.current === s && updateMediaSession());
   navigator.mediaSession.metadata = new MediaMetadata({
     title: s.name,
     artist: [countryName(s), s.tags].filter(Boolean).join(' · ') || 'Internetové rádio',
@@ -541,7 +585,27 @@ document.querySelectorAll('[data-goto]').forEach((b) => b.addEventListener('clic
 $('#editBtn').addEventListener('click', () => { state.editing = !state.editing; renderFavs(); });
 
 // ---------- Štart ----------
+// Obnoví údaje obľúbených z databázy (nové ikony, zmenené adresy streamov)
+async function refreshFavs() {
+  const ids = state.favs.map((s) => s.id).filter((id) => !id.startsWith('manual-'));
+  if (!ids.length) return;
+  try {
+    const data = await api('stations/byuuid', { uuids: ids.join(',') });
+    const fresh = new Map(data.map((d) => [d.stationuuid, normalize(d)]));
+    let changed = false;
+    state.favs = state.favs.map((s) => {
+      const f = fresh.get(s.id);
+      if (!f) return s;
+      const next = { ...s, url: f.url, url2: f.url2, favicon: f.favicon, homepage: f.homepage, bitrate: f.bitrate, codec: f.codec, hls: f.hls };
+      if (JSON.stringify(next) !== JSON.stringify(s)) changed = true;
+      return next;
+    });
+    if (changed) { saveFavs(); renderFavs(); }
+  } catch {}
+}
+
 loadGenres();
+refreshFavs();
 const countriesReady = loadCountries();
 const last = load(LS_LAST, null);
 if (last) { state.current = last; state.status = 'idle'; updateMediaSession(); }

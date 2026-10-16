@@ -103,12 +103,14 @@ main { padding: 0 16px calc(var(--tabs-h) + var(--player-h) + var(--safe-b) + 24
 @keyframes eq { 0%,100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
 .paused .eq i { animation-play-state: paused; }
 
+/* tlačidlá úprav sú vnútri dlaždice, aby ich neprekryla hlavička */
 .tile .remove, .tile .move {
-  position: absolute; width: 28px; height: 28px; border-radius: 50%;
-  display: none; place-items: center; font-size: 16px; font-weight: 700; color: #fff;
+  position: absolute; z-index: 3; width: 30px; height: 30px; border-radius: 50%;
+  display: none; place-items: center; font-size: 18px; font-weight: 700; color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.45);
 }
-.tile .remove { top: -8px; left: -8px; background: var(--danger); }
-.tile .move { top: -8px; right: -8px; background: var(--surface-2); border: 1px solid #3a3f4c; }
+.tile .remove { top: 6px; left: 6px; background: var(--danger); }
+.tile .move { top: 6px; right: 6px; background: rgba(20,22,28,.85); border: 1px solid rgba(255,255,255,.25); }
 .editing .tile .remove, .editing .tile .move { display: grid; }
 .editing .tile .art { animation: wiggle .3s infinite alternate ease-in-out; }
 @keyframes wiggle { from { transform: rotate(-1.5deg); } to { transform: rotate(1.5deg); } }

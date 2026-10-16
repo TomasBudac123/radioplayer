@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rádio">
+  <title>Rádio</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1 id="title">Obľúbené</h1>
+    <button id="editBtn" class="text-btn" hidden>Upraviť</button>
+  </header>
+
+  <main>
+    <!-- Obľúbené -->
+    <section id="view-home" class="view active">
+      <div id="favGrid" class="grid"></div>
+      <div id="favEmpty" class="empty" hidden>
+        <p>Zatiaľ nemáš žiadne obľúbené rádiá.</p>
+        <button class="primary-btn" data-goto="search">Hľadať rádiá</button>
+      </div>
+    </section>
+
+    <!-- Hľadanie -->
+    <section id="view-search" class="view">
+      <form id="searchForm" class="search-form" autocomplete="off">
+        <input id="q" type="search" placeholder="Názov rádia, napr. Expres, BBC, Jazz…" enterkeyhint="search">
+        <div class="filters">
+          <select id="country"><option value="">Všetky krajiny</option></select>
+          <input id="tag" type="search" placeholder="Žáner (rock, news…)" enterkeyhint="search">
+        </div>
+      </form>
+      <p id="searchInfo" class="info"></p>
+      <ul id="results" class="list"></ul>
+      <button id="moreBtn" class="secondary-btn" hidden>Načítať ďalšie</button>
+    </section>
+
+    <!-- Nastavenia -->
+    <section id="view-settings" class="view">
+      <div class="card">
+        <h2>Záloha obľúbených</h2>
+        <p class="muted">Aplikácia na ploche má vlastné úložisko. Zálohu si môžeš uložiť do súboru a neskôr obnoviť.</p>
+        <div class="row">
+          <button id="exportBtn" class="secondary-btn">Exportovať</button>
+          <label class="secondary-btn file-btn">Importovať
+            <input id="importFile" type="file" accept="application/json,.json" hidden>
+          </label>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Pridať rádio ručne</h2>
+        <form id="manualForm" class="manual">
+          <input id="mName" placeholder="Názov" required>
+          <input id="mUrl" type="url" placeholder="URL streamu (https://…)" required>
+          <button class="primary-btn">Pridať do obľúbených</button>
+        </form>
+      </div>
+      <p class="muted small">Databáza rádií: <a href="https://www.radio-browser.info" target="_blank" rel="noopener">radio-browser.info</a></p>
+    </section>
+  </main>
+
+  <!-- Prehrávač -->
+  <div id="player" class="player" hidden>
+    <div id="pLogo" class="p-logo"></div>
+    <div class="p-meta">
+      <div id="pName" class="p-name"></div>
+      <div id="pStatus" class="p-status"></div>
+    </div>
+    <button id="pFav" class="icon-btn" aria-label="Obľúbené">☆</button>
+    <button id="pToggle" class="play-btn" aria-label="Prehrať/Pozastaviť"></button>
+  </div>
+
+  <nav class="tabs">
+    <button data-view="home" class="active"><span>★</span>Obľúbené</button>
+    <button data-view="search"><span>⌕</span>Hľadať</button>
+    <button data-view="settings"><span>⚙</span>Nastavenia</button>
+  </nav>
+
+  <div id="toast" class="toast" hidden></div>
+  <audio id="audio" preload="none" playsinline></audio>
+  <script src="app.js"></script>
+</body>
+</html>

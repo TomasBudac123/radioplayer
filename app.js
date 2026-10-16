@@ -348,11 +348,34 @@ if ('mediaSession' in navigator) {
 const PAGE = 40;
 let searchSeq = 0;
 let debounce;
+const LS_TAG = 'radio.tag.v1';
+
+// Vybrané žánre – surové tagy v Radio Browser sú nejednotné, preto ponúkame overený zoznam
+const GENRES = [
+  ['pop', 'Pop'], ['rock', 'Rock'], ['hits', 'Hity'], ['top 40', 'Top 40'],
+  ['news', 'Správy'], ['talk', 'Diskusie a talk'], ['sport', 'Šport'],
+  ['dance', 'Dance'], ['electronic', 'Elektronická'], ['house', 'House'], ['techno', 'Techno'], ['trance', 'Trance'],
+  ['chillout', 'Chillout'], ['lounge', 'Lounge'], ['ambient', 'Ambient'],
+  ['jazz', 'Jazz'], ['blues', 'Blues'], ['soul', 'Soul'], ['funk', 'Funk'], ['rnb', 'R&B'], ['hip hop', 'Hip-hop'],
+  ['classical', 'Klasická'], ['soundtrack', 'Filmová hudba'],
+  ['oldies', 'Oldies'], ['60s', '60. roky'], ['70s', '70. roky'], ['80s', '80. roky'], ['90s', '90. roky'], ['2000s', '2000-ky'],
+  ['disco', 'Disco'], ['classic rock', 'Classic rock'], ['metal', 'Metal'], ['punk', 'Punk'],
+  ['alternative', 'Alternatívna'], ['indie', 'Indie'],
+  ['country', 'Country'], ['folk', 'Folk'], ['reggae', 'Reggae'], ['latin', 'Latino'], ['world', 'World music'],
+  ['christian', 'Kresťanské'], ['kids', 'Pre deti'], ['comedy', 'Humor'], ['public radio', 'Verejnoprávne'],
+];
+
+function loadGenres() {
+  const sel = $('#tag');
+  for (const [value, label] of GENRES) sel.add(new Option(label, value));
+  const saved = load(LS_TAG, '');
+  if (GENRES.some(([v]) => v === saved)) sel.value = saved;
+}
 
 function searchParams() {
   const p = { hidebroken: 'true', order: 'clickcount', reverse: 'true', limit: PAGE, offset: state.offset };
   const q = $('#q').value.trim();
-  const tag = $('#tag').value.trim().toLowerCase();
+  const tag = $('#tag').value;
   const cc = $('#country').value;
   if (q) p.name = q;
   if (tag) p.tag = tag;
@@ -375,10 +398,10 @@ async function search(append = false) {
     const fresh = items.filter((s) => !seen.has(s.url) && seen.add(s.url));
     state.results = append ? [...state.results, ...fresh] : fresh;
     state.offset += PAGE;
-    const hasQuery = $('#q').value.trim() || $('#tag').value.trim();
+    const hasQuery = $('#q').value.trim() || $('#tag').value;
     info.textContent = state.results.length
       ? (hasQuery ? `Výsledky (${state.results.length}${data.length === PAGE ? '+' : ''})` : 'Najpopulárnejšie')
-      : 'Nič sa nenašlo. Skús iný názov alebo krajinu.';
+      : 'Nič sa nenašlo. Skús iný názov, žáner alebo krajinu.';
     $('#moreBtn').hidden = data.length < PAGE;
     renderResults();
   } catch {
@@ -445,12 +468,14 @@ $('#searchForm').addEventListener('submit', (e) => {
   document.activeElement?.blur();
   search();
 });
-for (const id of ['#q', '#tag']) {
-  $(id).addEventListener('input', () => {
-    clearTimeout(debounce);
-    debounce = setTimeout(() => search(), 450);
-  });
-}
+$('#q').addEventListener('input', () => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => search(), 450);
+});
+$('#tag').addEventListener('change', () => {
+  save(LS_TAG, $('#tag').value);
+  search();
+});
 $('#country').addEventListener('change', () => {
   save(LS_COUNTRY, $('#country').value);
   search();
@@ -526,6 +551,7 @@ document.querySelectorAll('[data-goto]').forEach((b) => b.addEventListener('clic
 $('#editBtn').addEventListener('click', () => { state.editing = !state.editing; renderFavs(); });
 
 // ---------- Štart ----------
+loadGenres();
 const countriesReady = loadCountries();
 const last = load(LS_LAST, null);
 if (last) { state.current = last; state.status = 'idle'; updateMediaSession(); }

@@ -5,7 +5,7 @@ verejnú databázu [radio-browser.info](https://www.radio-browser.info), obľúb
 v zariadení a sú na hlavnej obrazovke – ťuknutím sa hneď pustia.
 
 - **Obľúbené** – mriežka obľúbených rádií, ťuknutie = prehrať / pozastaviť. „Upraviť“ umožní mazať a presúvať.
-- **Hľadať** – podľa názvu, krajiny a žánru; bez zadania zobrazí najpopulárnejšie rádiá zvolenej krajiny.
+- **Hľadať** – podľa názvu, krajiny a žánru (výber zo zoznamu); bez zadania zobrazí najpopulárnejšie rádiá zvolenej krajiny.
 - **Nastavenia** – export/import zálohy obľúbených, ručné pridanie streamu cez URL.
 - Ovládanie zo zamknutej obrazovky (Media Session), predchádzajúce/ďalšie = prepínanie obľúbených.
 

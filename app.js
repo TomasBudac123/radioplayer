@@ -352,7 +352,7 @@ const LS_TAG = 'radio.tag.v1';
 
 // Vybrané žánre – surové tagy v Radio Browser sú nejednotné, preto ponúkame overený zoznam
 const GENRES = [
-  ['pop', 'Pop'], ['rock', 'Rock'], ['hits', 'Hity'], ['top 40', 'Top 40'],
+  ['pop', 'Pop'], ['rock', 'Rock'], ['alternative', 'Alternatívna'], ['hits', 'Hity'], ['top 40', 'Top 40'],
   ['news', 'Správy'], ['talk', 'Diskusie a talk'], ['sport', 'Šport'],
   ['dance', 'Dance'], ['electronic', 'Elektronická'], ['house', 'House'], ['techno', 'Techno'], ['trance', 'Trance'],
   ['chillout', 'Chillout'], ['lounge', 'Lounge'], ['ambient', 'Ambient'],
@@ -360,7 +360,7 @@ const GENRES = [
   ['classical', 'Klasická'], ['soundtrack', 'Filmová hudba'],
   ['oldies', 'Oldies'], ['60s', '60. roky'], ['70s', '70. roky'], ['80s', '80. roky'], ['90s', '90. roky'], ['2000s', '2000-ky'],
   ['disco', 'Disco'], ['classic rock', 'Classic rock'], ['metal', 'Metal'], ['punk', 'Punk'],
-  ['alternative', 'Alternatívna'], ['indie', 'Indie'],
+  ['indie', 'Indie'],
   ['country', 'Country'], ['folk', 'Folk'], ['reggae', 'Reggae'], ['latin', 'Latino'], ['world', 'World music'],
   ['christian', 'Kresťanské'], ['kids', 'Pre deti'], ['comedy', 'Humor'], ['public radio', 'Verejnoprávne'],
 ];

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. -->
 <resources>
-    <string name="app_name">Radio</string>
+    <string name="app_name">Airwaves</string>
     <string name="tab_favorites">Favoris</string>
     <string name="tab_search">Rechercher</string>
     <string name="tab_settings">Réglages</string>
@@ -65,9 +65,9 @@
     <string name="backup_imported_none">Toutes les stations de la sauvegarde sont déjà dans vos favoris.</string>
     <string name="backup_imported_count">Stations ajoutées : %1$s</string>
     <string name="backup_invalid_title">Fichier de sauvegarde non valide</string>
-    <string name="backup_invalid_message">Choisissez un fichier exporté depuis l’app Radio (iPhone, Android ou web).</string>
+    <string name="backup_invalid_message">Choisissez un fichier exporté depuis l’app Airwaves (iPhone, Android ou web).</string>
     <string name="backup_exported_title">Sauvegarde enregistrée</string>
-    <string name="backup_exported_message">Restaurez-la dans l’app Radio sur Android, iPhone ou le web.</string>
+    <string name="backup_exported_message">Restaurez-la dans l’app Airwaves sur Android, iPhone ou le web.</string>
     <string name="backup_export_failed_title">Impossible d’enregistrer la sauvegarde</string>
     <string name="backup_export_failed_message">Essayez un autre emplacement.</string>
     <string name="voice_header">Commande vocale</string>

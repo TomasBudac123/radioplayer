@@ -55,7 +55,7 @@ actor RadioBrowserAPI {
   init() {
     let configuration = URLSessionConfiguration.default
     configuration.timeoutIntervalForRequest = 10
-    configuration.httpAdditionalHeaders = ["User-Agent": "RadioApp-iOS/1.0"]
+    configuration.httpAdditionalHeaders = ["User-Agent": "Airwaves-iOS/1.0"]
     session = URLSession(configuration: configuration)
   }
 

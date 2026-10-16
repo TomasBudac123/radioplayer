@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. -->
 <resources>
-    <string name="app_name">Rádio</string>
+    <string name="app_name">Airwaves</string>
     <string name="tab_favorites">Oblíbené</string>
     <string name="tab_search">Hledat</string>
     <string name="tab_settings">Nastavení</string>
@@ -65,9 +65,9 @@
     <string name="backup_imported_none">Všechna rádia ze zálohy už máš v oblíbených.</string>
     <string name="backup_imported_count">Přidaných rádií: %1$s</string>
     <string name="backup_invalid_title">Neplatný soubor zálohy</string>
-    <string name="backup_invalid_message">Vyber soubor exportovaný z aplikace Rádio (iPhone, Android nebo web).</string>
+    <string name="backup_invalid_message">Vyber soubor exportovaný z aplikace Airwaves (iPhone, Android nebo web).</string>
     <string name="backup_exported_title">Záloha uložena</string>
-    <string name="backup_exported_message">Obnovíš ji v aplikaci Rádio na Androidu, iPhonu nebo webu.</string>
+    <string name="backup_exported_message">Obnovíš ji v aplikaci Airwaves na Androidu, iPhonu nebo webu.</string>
     <string name="backup_export_failed_title">Zálohu se nepodařilo uložit</string>
     <string name="backup_export_failed_message">Zkus jiné umístění.</string>
     <string name="voice_header">Hlasové ovládání</string>

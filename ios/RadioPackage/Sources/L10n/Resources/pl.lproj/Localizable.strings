@@ -1,6 +1,6 @@
 /* Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. */
 
-"app.name" = "Radio";
+"app.name" = "Airwaves";
 "tab.favorites" = "Ulubione";
 "tab.search" = "Szukaj";
 "tab.settings" = "Ustawienia";
@@ -70,9 +70,9 @@
 "backup.imported.none" = "Wszystkie stacje z kopii są już w ulubionych.";
 "backup.imported.count" = "Dodane stacje: %1$@";
 "backup.invalid.title" = "Nieprawidłowy plik kopii";
-"backup.invalid.message" = "Wybierz plik wyeksportowany z aplikacji Radio (iPhone, Android lub web).";
+"backup.invalid.message" = "Wybierz plik wyeksportowany z aplikacji Airwaves (iPhone, Android lub web).";
 "backup.exported.title" = "Kopia zapisana";
-"backup.exported.message" = "Przywrócisz ją w aplikacji Radio na Androidzie, iPhonie lub w przeglądarce.";
+"backup.exported.message" = "Przywrócisz ją w aplikacji Airwaves na Androidzie, iPhonie lub w przeglądarce.";
 "backup.exportFailed.title" = "Nie udało się zapisać kopii";
 "backup.exportFailed.message" = "Spróbuj innej lokalizacji.";
 "voice.header" = "Sterowanie głosem";

@@ -1,6 +1,6 @@
 /* Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. */
 
-"app.name" = "Rádio";
+"app.name" = "Airwaves";
 "tab.favorites" = "Favoritos";
 "tab.search" = "Pesquisar";
 "tab.settings" = "Definições";
@@ -70,14 +70,14 @@
 "backup.imported.none" = "Todas as rádios da cópia já estão nos favoritos.";
 "backup.imported.count" = "Rádios adicionadas: %1$@";
 "backup.invalid.title" = "Ficheiro de cópia inválido";
-"backup.invalid.message" = "Escolha um ficheiro exportado da app Rádio (iPhone, Android ou web).";
+"backup.invalid.message" = "Escolha um ficheiro exportado da app Airwaves (iPhone, Android ou web).";
 "backup.exported.title" = "Cópia guardada";
-"backup.exported.message" = "Restaure-a na app Rádio no Android, iPhone ou web.";
+"backup.exported.message" = "Restaure-a na app Airwaves no Android, iPhone ou web.";
 "backup.exportFailed.title" = "Não foi possível guardar a cópia";
 "backup.exportFailed.message" = "Experimente outra localização.";
 "voice.header" = "Controlo por voz";
 "voice.example" = "Rádio Comercial";
-"voice.siri.footer" = "Diga, por exemplo, «Siri, toca %1$@ na %2$@» ou um género. Também funciona no CarPlay.";
+"voice.siri.footer" = "Diga, por exemplo, «Siri, toca %1$@ no %2$@» ou um género. Também funciona no CarPlay.";
 "voice.siri.allow" = "Permitir Siri";
 "voice.siri.allowed" = "Siri está permitido";
 "voice.siri.denied" = "Siri está desativado para esta app nos Ajustes";

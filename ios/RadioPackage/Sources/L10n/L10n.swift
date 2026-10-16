@@ -4,7 +4,7 @@ import Foundation
 
 /// Lokalizované texty aplikácie (rovnaké ako v Android aplikácii).
 public enum L10n {
-  /// Radio
+  /// Airwaves
   public static var appName: String { tr("app.name") }
   /// Favorites
   public static var tabFavorites: String { tr("tab.favorites") }
@@ -144,11 +144,11 @@ public enum L10n {
   public static func backupImportedCount(_ p1: String) -> String { tr("backup.imported.count", p1) }
   /// Invalid backup file
   public static var backupInvalidTitle: String { tr("backup.invalid.title") }
-  /// Choose a file exported from the Radio app (iPhone, Android or web).
+  /// Choose a file exported from the Airwaves app (iPhone, Android or web).
   public static var backupInvalidMessage: String { tr("backup.invalid.message") }
   /// Backup saved
   public static var backupExportedTitle: String { tr("backup.exported.title") }
-  /// Restore it in the Radio app on Android, iPhone or the web.
+  /// Restore it in the Airwaves app on Android, iPhone or the web.
   public static var backupExportedMessage: String { tr("backup.exported.message") }
   /// Couldn’t save the backup
   public static var backupExportFailedTitle: String { tr("backup.exportFailed.title") }

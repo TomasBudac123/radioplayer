@@ -1,4 +1,4 @@
-# Rádio – iOS (SwiftUI + TCA + CarPlay)
+# Airwaves – iOS (SwiftUI + TCA + CarPlay)
 
 Natívna iOS appka postavená podľa „Point-Free Way“ (skilly `pfw-*` v `.claude/skills`):
 The Composable Architecture, Dependencies, Sharing, IdentifiedCollections, SwiftNavigation, Swift Testing.
@@ -56,7 +56,7 @@ cd ios/RadioPackage && xcodebuild test -scheme RadioPackage-Package -destination
 | `RadioPackage/Sources/AppFeature` | TCA features: `AppFeature`, `Favorites`, `Search`, `Settings`, `Player` + SwiftUI views |
 | `RadioPackage/Sources/L10n` | Preklady (generované z `localization/strings.json`) a typované `L10n.*` |
 | `RadioPackage/Sources/SiriClient` | Povolenie Siri a „darovanie“ prehratých rádií, aby ich Siri ponúkala |
-| `RadioPackage/Sources/SiriFeature` | `VoiceControl` – spracuje `INPlayMediaIntent` („Siri, pusti … v Rádiu“) |
+| `RadioPackage/Sources/SiriFeature` | `VoiceControl` – spracuje `INPlayMediaIntent` („Siri, pusti … v Airwaves“) |
 | `RadioPackage/Sources/CarPlayFeature` | `CarPlayController` – karty Obľúbené / Populárne / Žánre a Now Playing s hviezdičkou |
 
 Zdieľaný stav: obľúbené a posledné rádio sú `@Shared(.fileStorage)`, aktuálne prehrávanie je

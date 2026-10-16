@@ -11,7 +11,9 @@ v zariadení a sú na hlavnej obrazovke – ťuknutím sa hneď pustia.
 
 Bez build kroku a bez závislostí – čisté HTML/CSS/JS.
 
-## Natívne aplikácie
+## Natívne aplikácie – Airwaves
+
+Natívne appky sa volajú **Airwaves** (jedinečný názov, aby ho Siri nezamieňala so systémovým Apple Radio).
 
 | Platforma | Priečinok | Technológie | V aute |
 | --- | --- | --- | --- |
@@ -30,7 +32,7 @@ maďarčina a portugalčina. Texty oboch appiek sú v jednej tabuľke
 python3 tools/gen-strings.py
 ```
 
-**Hlasové ovládanie:** „Siri, pusti Rádio Expres v Rádiu“ (iPhone aj CarPlay) a „Hey Google, pusti … v Rádiu“
+**Hlasové ovládanie:** „Siri, pusti Rádio Expres v Airwaves“ (iPhone aj CarPlay) a „Hey Google, pusti … v Airwaves“
 (Android aj Android Auto). Hľadá sa najprv presný názov v obľúbených, potom žáner („pusti jazz“),
 potom čiastočná zhoda s obľúbeným rádiom a nakoniec celá databáza.
 

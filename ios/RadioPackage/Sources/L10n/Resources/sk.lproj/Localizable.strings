@@ -1,6 +1,6 @@
 /* Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. */
 
-"app.name" = "Rádio";
+"app.name" = "Airwaves";
 "tab.favorites" = "Obľúbené";
 "tab.search" = "Hľadať";
 "tab.settings" = "Nastavenia";
@@ -70,9 +70,9 @@
 "backup.imported.none" = "Všetky rádiá zo zálohy už máš v obľúbených.";
 "backup.imported.count" = "Pridaných rádií: %1$@";
 "backup.invalid.title" = "Neplatný súbor zálohy";
-"backup.invalid.message" = "Vyber súbor exportovaný z aplikácie Rádio (iPhone, Android alebo web).";
+"backup.invalid.message" = "Vyber súbor exportovaný z aplikácie Airwaves (iPhone, Android alebo web).";
 "backup.exported.title" = "Záloha uložená";
-"backup.exported.message" = "Obnovíš ju v aplikácii Rádio na Androide, iPhone alebo webe.";
+"backup.exported.message" = "Obnovíš ju v aplikácii Airwaves na Androide, iPhone alebo webe.";
 "backup.exportFailed.title" = "Zálohu sa nepodarilo uložiť";
 "backup.exportFailed.message" = "Skús iné umiestnenie.";
 "voice.header" = "Hlasové ovládanie";

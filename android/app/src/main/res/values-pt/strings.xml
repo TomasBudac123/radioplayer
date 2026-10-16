@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. -->
 <resources>
-    <string name="app_name">Rádio</string>
+    <string name="app_name">Airwaves</string>
     <string name="tab_favorites">Favoritos</string>
     <string name="tab_search">Pesquisar</string>
     <string name="tab_settings">Definições</string>
@@ -65,14 +65,14 @@
     <string name="backup_imported_none">Todas as rádios da cópia já estão nos favoritos.</string>
     <string name="backup_imported_count">Rádios adicionadas: %1$s</string>
     <string name="backup_invalid_title">Ficheiro de cópia inválido</string>
-    <string name="backup_invalid_message">Escolha um ficheiro exportado da app Rádio (iPhone, Android ou web).</string>
+    <string name="backup_invalid_message">Escolha um ficheiro exportado da app Airwaves (iPhone, Android ou web).</string>
     <string name="backup_exported_title">Cópia guardada</string>
-    <string name="backup_exported_message">Restaure-a na app Rádio no Android, iPhone ou web.</string>
+    <string name="backup_exported_message">Restaure-a na app Airwaves no Android, iPhone ou web.</string>
     <string name="backup_export_failed_title">Não foi possível guardar a cópia</string>
     <string name="backup_export_failed_message">Experimente outra localização.</string>
     <string name="voice_header">Controlo por voz</string>
     <string name="voice_example">Rádio Comercial</string>
-    <string name="voice_assistant_footer">Diga, por exemplo, «Hey Google, toca %1$s na %2$s» ou um género. Também funciona no Android Auto.</string>
+    <string name="voice_assistant_footer">Diga, por exemplo, «Hey Google, toca %1$s no %2$s» ou um género. Também funciona no Android Auto.</string>
     <string name="car_your_country">O seu país</string>
     <string name="genre_alternative">Alternativa</string>
     <string name="genre_pop">Pop</string>

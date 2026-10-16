@@ -22,7 +22,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     AppFeature()
   }
 
-  /// „Siri, pusti … v Rádiu“ – v telefóne aj v CarPlay.
+  /// „Siri, pusti … v Airwaves“ – v telefóne aj v CarPlay.
   @MainActor static let voiceControl = VoiceControl(store: store)
 
   func application(

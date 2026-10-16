@@ -6,7 +6,7 @@ import Models
 import RadioBrowserClient
 import SiriClient
 
-/// Spracuje „Siri, pusti … v Rádiu“ – v telefóne aj v CarPlay.
+/// Spracuje „Siri, pusti … v Airwaves“ – v telefóne aj v CarPlay.
 ///
 /// Siri najprv vyhľadá rádio (`resolveMediaItems`), potom aplikácia dostane príkaz
 /// `.handleInApp` a spustí prehrávanie vo svojom procese cez zdieľaný `Store`.

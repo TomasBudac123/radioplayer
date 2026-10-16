@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. -->
 <resources>
-    <string name="app_name">Rádió</string>
+    <string name="app_name">Airwaves</string>
     <string name="tab_favorites">Kedvencek</string>
     <string name="tab_search">Keresés</string>
     <string name="tab_settings">Beállítások</string>
@@ -65,14 +65,14 @@
     <string name="backup_imported_none">A mentés minden állomása már a kedvenceid között van.</string>
     <string name="backup_imported_count">Hozzáadott állomások: %1$s</string>
     <string name="backup_invalid_title">Érvénytelen mentésfájl</string>
-    <string name="backup_invalid_message">Válassz a Rádió appból exportált fájlt (iPhone, Android vagy web).</string>
+    <string name="backup_invalid_message">Válassz az Airwaves appból exportált fájlt (iPhone, Android vagy web).</string>
     <string name="backup_exported_title">Mentés elkészült</string>
-    <string name="backup_exported_message">Visszaállíthatod a Rádió appban Androidon, iPhone-on vagy a weben.</string>
+    <string name="backup_exported_message">Visszaállíthatod az Airwaves appban Androidon, iPhone-on vagy a weben.</string>
     <string name="backup_export_failed_title">Nem sikerült menteni</string>
     <string name="backup_export_failed_message">Próbálj más helyet.</string>
     <string name="voice_header">Hangvezérlés</string>
     <string name="voice_example">Retro Rádió</string>
-    <string name="voice_assistant_footer">Mondd például: „Hey Google, játszd le: %1$s a(z) %2$s appban”, vagy mondj egy műfajt. Android Autóban is működik.</string>
+    <string name="voice_assistant_footer">Mondd például: „Hey Google, játszd le: %1$s az %2$s appban”, vagy mondj egy műfajt. Android Autóban is működik.</string>
     <string name="car_your_country">Az országod</string>
     <string name="genre_alternative">Alternatív</string>
     <string name="genre_pop">Pop</string>

@@ -1,6 +1,6 @@
 /* Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. */
 
-"app.name" = "Rádió";
+"app.name" = "Airwaves";
 "tab.favorites" = "Kedvencek";
 "tab.search" = "Keresés";
 "tab.settings" = "Beállítások";
@@ -70,14 +70,14 @@
 "backup.imported.none" = "A mentés minden állomása már a kedvenceid között van.";
 "backup.imported.count" = "Hozzáadott állomások: %1$@";
 "backup.invalid.title" = "Érvénytelen mentésfájl";
-"backup.invalid.message" = "Válassz a Rádió appból exportált fájlt (iPhone, Android vagy web).";
+"backup.invalid.message" = "Válassz az Airwaves appból exportált fájlt (iPhone, Android vagy web).";
 "backup.exported.title" = "Mentés elkészült";
-"backup.exported.message" = "Visszaállíthatod a Rádió appban Androidon, iPhone-on vagy a weben.";
+"backup.exported.message" = "Visszaállíthatod az Airwaves appban Androidon, iPhone-on vagy a weben.";
 "backup.exportFailed.title" = "Nem sikerült menteni";
 "backup.exportFailed.message" = "Próbálj más helyet.";
 "voice.header" = "Hangvezérlés";
 "voice.example" = "Retro Rádió";
-"voice.siri.footer" = "Mondd például: „Siri, játszd le: %1$@ a(z) %2$@ appban”, vagy mondj egy műfajt. CarPlayben is működik.";
+"voice.siri.footer" = "Mondd például: „Siri, játszd le: %1$@ az %2$@ appban”, vagy mondj egy műfajt. CarPlayben is működik.";
 "voice.siri.allow" = "Siri engedélyezése";
 "voice.siri.allowed" = "Siri engedélyezve";
 "voice.siri.denied" = "A Siri ki van kapcsolva ehhez az apphoz a Beállításokban";

@@ -1,6 +1,6 @@
 /* Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. */
 
-"app.name" = "Radio";
+"app.name" = "Airwaves";
 "tab.favorites" = "Favoriten";
 "tab.search" = "Suche";
 "tab.settings" = "Einstellungen";
@@ -70,9 +70,9 @@
 "backup.imported.none" = "Alle Sender aus dem Backup sind schon in deinen Favoriten.";
 "backup.imported.count" = "Hinzugefügte Sender: %1$@";
 "backup.invalid.title" = "Ungültige Backup-Datei";
-"backup.invalid.message" = "Wähle eine aus der Radio-App exportierte Datei (iPhone, Android oder Web).";
+"backup.invalid.message" = "Wähle eine aus der Airwaves-App exportierte Datei (iPhone, Android oder Web).";
 "backup.exported.title" = "Backup gespeichert";
-"backup.exported.message" = "Stelle es in der Radio-App auf Android, iPhone oder im Web wieder her.";
+"backup.exported.message" = "Stelle es in der Airwaves-App auf Android, iPhone oder im Web wieder her.";
 "backup.exportFailed.title" = "Backup konnte nicht gespeichert werden";
 "backup.exportFailed.message" = "Versuche einen anderen Ort.";
 "voice.header" = "Sprachsteuerung";

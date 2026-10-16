@@ -32,7 +32,7 @@ class RadioBrowserApi(
     private val client = baseClient.newBuilder()
         .callTimeout(10, TimeUnit.SECONDS)
         .addInterceptor { chain ->
-            chain.proceed(chain.request().newBuilder().header("User-Agent", "RadioApp-Android/1.0").build())
+            chain.proceed(chain.request().newBuilder().header("User-Agent", "Airwaves-Android/1.0").build())
         }
         .build()
     private val mutex = Mutex()

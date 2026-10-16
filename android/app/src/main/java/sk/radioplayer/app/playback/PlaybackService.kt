@@ -103,7 +103,7 @@ class PlaybackService : MediaLibraryService() {
 
     private fun buildExoPlayer(): ExoPlayer {
         val http = DefaultHttpDataSource.Factory()
-            .setUserAgent("RadioApp-Android/1.0")
+            .setUserAgent("Airwaves-Android/1.0")
             .setAllowCrossProtocolRedirects(true)
             .setConnectTimeoutMs(10_000)
             .setReadTimeoutMs(15_000)
@@ -290,7 +290,7 @@ class PlaybackService : MediaLibraryService() {
             val single = mediaItems.singleOrNull()
             val searchQuery = single?.requestMetadata?.searchQuery
             val expanded = when {
-                // Hlasový príkaz „pusti … v Rádiu“.
+                // Hlasový príkaz „pusti … v Airwaves“.
                 single != null && single.mediaId.isEmpty() && searchQuery != null -> library.playFromSearch(searchQuery)
                 // Jedno rádio z Android Auto – doplníme zoznam, z ktorého pochádza.
                 single != null -> library.expand(single)

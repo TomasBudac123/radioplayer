@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
         handleVoiceSearch(intent)
     }
 
-    /** „Hey Google, pusti … v Rádiu“ – Asistent pošle hľadaný výraz ako MEDIA_PLAY_FROM_SEARCH. */
+    /** „Hey Google, pusti … v Airwaves“ – Asistent pošle hľadaný výraz ako MEDIA_PLAY_FROM_SEARCH. */
     private fun handleVoiceSearch(intent: Intent?) {
         if (intent?.action != MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH) return
         val query = intent.getStringExtra(SearchManager.QUERY).orEmpty()

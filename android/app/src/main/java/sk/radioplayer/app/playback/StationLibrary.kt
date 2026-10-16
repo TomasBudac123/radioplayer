@@ -90,7 +90,7 @@ class StationLibrary(
         return list.map { if (it.id == stationId) resolved else it.toMediaItem(listId) } to index
     }
 
-    /** Hlasové „pusti … v Rádiu“: obľúbené, potom žáner, potom databáza (rovnako ako Siri na iOS). */
+    /** Hlasové „pusti … v Airwaves“: obľúbené, potom žáner, potom databáza (rovnako ako Siri na iOS). */
     suspend fun playFromSearch(query: String): Pair<List<MediaItem>, Int>? {
         if (VoiceQuery.normalize(query).isEmpty()) {
             // „Pusti Rádio“ bez názvu – pokračuj tam, kde si skončil.

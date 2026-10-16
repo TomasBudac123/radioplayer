@@ -1,4 +1,4 @@
-# Rádio – Android (Compose + Media3 + Android Auto)
+# Airwaves – Android (Compose + Media3 + Android Auto)
 
 Natívna Android appka: Kotlin, Jetpack Compose (Material 3 s neutrálnou paletou z `design/tokens.json`),
 Media3 ExoPlayer + `MediaLibraryService`, OkHttp, kotlinx.serialization, Coil.
@@ -28,7 +28,7 @@ a prejde strom knižnice, prehratie podľa ID, prepínanie a tlačidlo obľúben
 | --- | --- |
 | `data/` | `Station` (JSON kompatibilný s webom aj iOS), Radio Browser API so striedaním zrkadiel, obľúbené v súbore |
 | `playback/PlaybackService.kt` | `MediaLibraryService` – ExoPlayer, notifikácia, záložná adresa streamu, ICY názvy skladieb, hviezdička ako tlačidlo v aute |
-| `playback/StationLibrary.kt` | Strom pre Android Auto: Obľúbené (mriežka), Populárne (krajina + svet), Žánre, hlasové „pusti … v Rádiu“ |
+| `playback/StationLibrary.kt` | Strom pre Android Auto: Obľúbené (mriežka), Populárne (krajina + svet), Žánre, hlasové „pusti … v Airwaves“ |
 | `playback/PlayerConnection.kt` | `MediaController` pre UI – rovnaký session ako auto |
 | `ui/` | Compose obrazovky Obľúbené, Hľadať, Nastavenia, mini prehrávač a celoobrazovkový prehrávač |
 
@@ -36,7 +36,7 @@ a prejde strom knižnice, prehratie podľa ID, prepínanie a tlačidlo obľúben
 
 - `res/values*/strings.xml` sa generujú z `localization/strings.json` (`python3 tools/gen-strings.py`),
   jazyk appky sa dá zvoliť aj v systémových nastaveniach Androidu 13+ (`locales_config.xml`).
-- Google Asistent: „Hey Google, pusti … v Rádiu“ príde ako `MEDIA_PLAY_FROM_SEARCH` (telefón) alebo
+- Google Asistent: „Hey Google, pusti … v Airwaves“ príde ako `MEDIA_PLAY_FROM_SEARCH` (telefón) alebo
   cez médiovú session (Android Auto); vyhľadávanie rieši `StationLibrary.playFromSearch` podľa `VoiceQuery`.
 - V hľadaní je mikrofón (systémové rozpoznávanie reči).
 

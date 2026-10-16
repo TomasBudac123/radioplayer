@@ -21,11 +21,17 @@ let entitlements: [String: Plist.Value] =
   (isSiriEnabled ? ["com.apple.developer.siri": true] : [:])
     .merging(isCarPlayEnabled ? ["com.apple.developer.carplay-audio": true] : [:]) { $1 }
 
-/// Siri: „pusti … v Rádiu“ (aj v CarPlay). Bez oprávnenia Siri appka sekciu Siri skryje.
+/// Siri: „Siri, play BBC 1 on Airwaves“ (aj v CarPlay). Bez oprávnenia Siri appka sekciu Siri skryje.
 let siriInfoPlist: [String: Plist.Value] = !isSiriEnabled ? [:] : [
   "INIntentsSupported": ["INPlayMediaIntent"],
   "INSupportedMediaCategories": ["INMediaCategoryRadio"],
   "NSSiriUsageDescription": "Siri plays your stations when you ask, for example in the car.",
+  // Iné spôsoby, ako môže Siri názov appky počuť alebo ho niekto vysloví.
+  "INAlternativeAppNames": [
+    ["INAlternativeAppName": "Air Waves", "INAlternativeAppNamePronunciationHint": "air waves"],
+    ["INAlternativeAppName": "Airwave", "INAlternativeAppNamePronunciationHint": "air wave"],
+    ["INAlternativeAppName": "Airwaves Radio", "INAlternativeAppNamePronunciationHint": "air waves radio"],
+  ],
 ]
 
 /// Tenký app target – všetka logika je v SPM balíku `RadioPackage`.
@@ -52,7 +58,7 @@ let project = Project(
       bundleId: bundleID,
       deploymentTargets: .iOS("18.0"),
       infoPlist: .extendingDefault(with: siriInfoPlist.merging([
-        "CFBundleDisplayName": "Radio",
+        "CFBundleDisplayName": "Airwaves",
         "CFBundleDevelopmentRegion": "en",
         "CFBundleAllowMixedLocalizations": true,
         // Verzia a build sa nastavujú v build settings nižšie (Xcode ich ukazuje na karte General).

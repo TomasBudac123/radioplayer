@@ -48,6 +48,7 @@ main { padding: 0 16px calc(var(--tabs-h) + var(--player-h) + var(--safe-b) + 24
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 14px;
+  padding-top: 4px;
 }
 .tile {
   position: relative;
@@ -74,7 +75,6 @@ main { padding: 0 16px calc(var(--tabs-h) + var(--player-h) + var(--safe-b) + 24
   border-radius: 12px; filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
 }
 .tile:active .art { transform: scale(.95); }
-.tile.playing .art { box-shadow: 0 0 0 3px var(--accent); }
 .tile .name {
   font-size: 13px; line-height: 1.25; max-width: 100%;
   overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
@@ -85,6 +85,8 @@ main { padding: 0 16px calc(var(--tabs-h) + var(--player-h) + var(--safe-b) + 24
 .tile .art::after {
   content: ""; position: absolute; inset: 0; z-index: 1;
   background: rgba(0,0,0,.5); opacity: 0; transition: opacity .2s ease;
+  /* rámik je vnútri dlaždice, aby ho neprekryla hlavička */
+  border-radius: inherit; box-shadow: inset 0 0 0 3px var(--accent);
 }
 .tile.playing .art::after { opacity: 1; }
 .tile .eq {

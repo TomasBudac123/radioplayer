@@ -9,10 +9,34 @@ The Composable Architecture, Dependencies, Sharing, IdentifiedCollections, Swift
 cd ios && tuist generate
 ```
 
-Otvor `ios/Radio.xcworkspace` (nie `.xcodeproj`), schéma **Radio**. Pri prvom builde Xcode vyžiada
+Otvor `ios/Radio.xcworkspace` (nie `.xcodeproj`), schéma **Radio**.
+
+### Podpisovanie
+
+- **Bezplatný osobný tím (Personal Team)** nepodporuje Siri ani CarPlay. Vygeneruj projekt bez nich,
+  aby sa appka dala nahrať na iPhone (sekcia Siri sa v appke skryje):
+
+```bash
+TUIST_TEAM_ID=<ID tímu> TUIST_PERSONAL_TEAM=1 tuist generate
+```
+
+- **Platený tím (Apple Developer Program)** – Siri funguje hneď. CarPlay Audio musí Apple tímu najprv
+  schváliť (developer.apple.com/contact/carplay); dovtedy na iPhone podpisuj bez CarPlay:
+
+```bash
+TUIST_TEAM_ID=<ID tímu> TUIST_CARPLAY=0 tuist generate
+```
+
+- Po schválení CarPlay (alebo pre simulátor, ktorý schválenie nepotrebuje):
+
+```bash
+TUIST_TEAM_ID=<ID tímu> tuist generate
+```
+
+ID tímu nájdeš v Xcode (*Signing & Capabilities → Team*) alebo na developer.apple.com → Membership. Pri prvom builde Xcode vyžiada
 povolenie makier z balíkov Point-Free – zvoľ *Trust & Enable*.
 
-Testy balíka (27 testov – prehrávač, obľúbené, hľadanie, nastavenia, Siri, formát zálohy):
+Testy balíka (28 testov – prehrávač, obľúbené, hľadanie, nastavenia, Siri, formát zálohy):
 
 ```bash
 cd ios/RadioPackage && xcodebuild test -scheme RadioPackage-Package -destination 'platform=iOS Simulator,name=iPhone 17 Pro' -skipMacroValidation

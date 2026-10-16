@@ -127,6 +127,18 @@ struct FeatureTests {
     }
   }
 
+  @Test func settingsHidesSiriWithoutCapability() async {
+    let store = TestStore(initialState: Settings.State()) {
+      Settings()
+    } withDependencies: {
+      $0.siri.authorizationStatus = { .unavailable }
+    }
+
+    await store.send(.onAppear) {
+      $0.siriAuthorization = .unavailable
+    }
+  }
+
   @Test func emptyFavoritesStartOnSearch() {
     #expect(AppFeature.State().selectedTab == .search)
   }

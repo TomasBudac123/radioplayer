@@ -8,6 +8,8 @@ public enum SiriAuthorization: Equatable, Sendable {
   case authorized
   case denied
   case notDetermined
+  /// Build bez schopnosti Siri (napr. bezplatný osobný tím) – Siri sa nesmie volať.
+  case unavailable
 }
 
 /// Prístup k Siri: povolenie a „darovanie“ prehratých rádií, aby ich Siri lepšie rozpoznávala
@@ -21,7 +23,15 @@ public struct SiriClient: Sendable {
 
 extension SiriClient: DependencyKey {
   public static var liveValue: Self {
-    Self(
+    // Bez oprávnenia Siri by INPreferences zhodilo appku; build bez Siri nemá ani popis použitia.
+    guard Bundle.main.object(forInfoDictionaryKey: "NSSiriUsageDescription") != nil else {
+      return Self(
+        authorizationStatus: { .unavailable },
+        donatePlay: { _ in },
+        requestAuthorization: { .unavailable }
+      )
+    }
+    return Self(
       authorizationStatus: { SiriAuthorization(INPreferences.siriAuthorizationStatus()) },
       donatePlay: { station in
         let item = INMediaItem(station)

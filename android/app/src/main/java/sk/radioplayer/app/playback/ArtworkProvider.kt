@@ -74,7 +74,6 @@ class ArtworkProvider : ContentProvider() {
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int = 0
 
     companion object {
-        private const val AUTHORITY = "sk.radioplayer.app.artwork"
         private const val PARAM_CANDIDATE = "c"
         private const val PARAM_SIGNATURE = "s"
         private const val MIN_SIDE = 40
@@ -92,7 +91,7 @@ class ArtworkProvider : ContentProvider() {
             if (candidates.isEmpty()) return null
             return Uri.Builder()
                 .scheme("content")
-                .authority(AUTHORITY)
+                .authority("${context.packageName}.artwork")
                 .appendPath(station.id)
                 .apply { candidates.forEach { appendQueryParameter(PARAM_CANDIDATE, it) } }
                 .appendQueryParameter(PARAM_SIGNATURE, sign(context, candidates))

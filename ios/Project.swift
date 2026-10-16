@@ -1,5 +1,33 @@
 import ProjectDescription
 
+/// Bundle ID musí byť unikátny v celom App Store; iný sa dá nastaviť cez `TUIST_BUNDLE_ID=…`.
+let bundleID = Environment.bundleId.getString(default: "sk.tomasbudac.radio")
+
+/// Tím na podpisovanie, napr. `TUIST_TEAM_ID=ABCDE12345 tuist generate`.
+let teamID = Environment.teamId.getString(default: "")
+
+/// Bezplatný osobný tím (Personal Team) nepodporuje Siri ani CarPlay:
+/// `TUIST_PERSONAL_TEAM=1 tuist generate` ich vynechá, aby sa appka dala nahrať na iPhone.
+let isPersonalTeam = Environment.personalTeam.getBoolean(default: false)
+
+/// Siri vyžaduje platený tím: `TUIST_SIRI=0` ju vypne.
+let isSiriEnabled = !isPersonalTeam && Environment.siri.getBoolean(default: true)
+
+/// CarPlay Audio musí tímu najprv schváliť Apple. Kým nie je schválené, na iPhone podpisuj
+/// s `TUIST_CARPLAY=0`; v simulátore CarPlay funguje aj bez schválenia.
+let isCarPlayEnabled = !isPersonalTeam && Environment.carplay.getBoolean(default: true)
+
+let entitlements: [String: Plist.Value] =
+  (isSiriEnabled ? ["com.apple.developer.siri": true] : [:])
+    .merging(isCarPlayEnabled ? ["com.apple.developer.carplay-audio": true] : [:]) { $1 }
+
+/// Siri: „pusti … v Rádiu“ (aj v CarPlay). Bez oprávnenia Siri appka sekciu Siri skryje.
+let siriInfoPlist: [String: Plist.Value] = !isSiriEnabled ? [:] : [
+  "INIntentsSupported": ["INPlayMediaIntent"],
+  "INSupportedMediaCategories": ["INMediaCategoryRadio"],
+  "NSSiriUsageDescription": "Siri plays your stations when you ask, for example in the car.",
+]
+
 /// Tenký app target – všetka logika je v SPM balíku `RadioPackage`.
 let project = Project(
   name: "Radio",
@@ -21,18 +49,15 @@ let project = Project(
       name: "Radio",
       destinations: [.iPhone, .iPad],
       product: .app,
-      bundleId: "sk.radioplayer.app",
+      bundleId: bundleID,
       deploymentTargets: .iOS("18.0"),
-      infoPlist: .extendingDefault(with: [
+      infoPlist: .extendingDefault(with: siriInfoPlist.merging([
         "CFBundleDisplayName": "Radio",
         "CFBundleDevelopmentRegion": "en",
         "CFBundleAllowMixedLocalizations": true,
-        // Siri: „pusti … v Rádiu“ (aj v CarPlay).
-        "INIntentsSupported": ["INPlayMediaIntent"],
-        "INSupportedMediaCategories": ["INMediaCategoryRadio"],
-        "NSSiriUsageDescription": "Siri plays your stations when you ask, for example in the car.",
-        "CFBundleShortVersionString": "1.0.0",
-        "CFBundleVersion": "1",
+        // Verzia a build sa nastavujú v build settings nižšie (Xcode ich ukazuje na karte General).
+        "CFBundleShortVersionString": "$(MARKETING_VERSION)",
+        "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
         "ITSAppUsesNonExemptEncryption": false,
         "LSApplicationCategoryType": "public.app-category.music",
         // Mnohé rádiá vysielajú a majú logá len cez http://.
@@ -61,15 +86,24 @@ let project = Project(
           "UIInterfaceOrientationLandscapeLeft",
           "UIInterfaceOrientationLandscapeRight",
         ],
-      ]),
+      ]) { $1 }),
       sources: ["App/Sources/**"],
       resources: ["App/Resources/**"],
-      entitlements: .file(path: "App/Radio.entitlements"),
+      // Oprávnenia Siri a CarPlay Audio vyžadujú platený tím (CarPlay navyše schválenie od Apple).
+      entitlements: entitlements.isEmpty ? nil : .dictionary(entitlements),
       dependencies: [
         .package(product: "AppFeature"),
         .package(product: "CarPlayFeature"),
         .package(product: "SiriFeature"),
-      ]
+      ],
+      settings: .settings(
+        base: [
+          // Verzia v App Store; zvyšuj pri každom vydaní.
+          "MARKETING_VERSION": "1.0.0",
+          // Číslo buildu; pri každom nahratí do App Store Connect / TestFlight musí byť vyššie.
+          "CURRENT_PROJECT_VERSION": "1",
+        ].merging(teamID.isEmpty ? [:] : ["DEVELOPMENT_TEAM": .string(teamID)]) { $1 }
+      )
     )
   ]
 )

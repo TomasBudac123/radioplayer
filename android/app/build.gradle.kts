@@ -9,7 +9,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "sk.radioplayer.app"
+        applicationId = "sk.tomasbudac.radio"
         minSdk = 26
         targetSdk = 36
         versionCode = 1

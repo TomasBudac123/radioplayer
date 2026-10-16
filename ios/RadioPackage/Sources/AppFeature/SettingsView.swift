@@ -62,25 +62,27 @@ struct SettingsView: View {
         Text(L10n.settingsManualFooter)
       }
 
-      Section {
-        switch store.siriAuthorization {
-        case .authorized:
-          Label(L10n.voiceSiriAllowed, systemImage: "checkmark.circle.fill")
-            .foregroundStyle(Color.rpTextPrimary)
-        case .denied:
-          Label(L10n.voiceSiriDenied, systemImage: "mic.slash")
-            .foregroundStyle(Color.rpTextSecondary)
-        case .notDetermined:
-          Button {
-            store.send(.allowSiriButtonTapped)
-          } label: {
-            Label(L10n.voiceSiriAllow, systemImage: "mic")
+      if store.siriAuthorization != .unavailable {
+        Section {
+          switch store.siriAuthorization {
+          case .authorized:
+            Label(L10n.voiceSiriAllowed, systemImage: "checkmark.circle.fill")
+              .foregroundStyle(Color.rpTextPrimary)
+          case .denied:
+            Label(L10n.voiceSiriDenied, systemImage: "mic.slash")
+              .foregroundStyle(Color.rpTextSecondary)
+          case .notDetermined, .unavailable:
+            Button {
+              store.send(.allowSiriButtonTapped)
+            } label: {
+              Label(L10n.voiceSiriAllow, systemImage: "mic")
+            }
           }
+        } header: {
+          Text(L10n.voiceHeader)
+        } footer: {
+          Text(L10n.voiceSiriFooter(L10n.voiceExample, L10n.appName))
         }
-      } header: {
-        Text(L10n.voiceHeader)
-      } footer: {
-        Text(L10n.voiceSiriFooter(L10n.voiceExample, L10n.appName))
       }
 
       Section {

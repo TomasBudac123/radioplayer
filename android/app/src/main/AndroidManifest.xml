@@ -64,7 +64,7 @@
         <!-- Logá rádií pre Android Auto / Automotive (auto číta obrázky len cez content://). -->
         <provider
             android:name=".playback.ArtworkProvider"
-            android:authorities="sk.radioplayer.app.artwork"
+            android:authorities="${applicationId}.artwork"
             android:exported="true" />
 
         <receiver

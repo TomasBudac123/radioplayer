@@ -1,0 +1,4 @@
+/* Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. */
+
+"CFBundleDisplayName" = "Radio";
+"NSSiriUsageDescription" = "Siri avvia le tue stazioni su richiesta, ad esempio in auto.";

@@ -1,0 +1,7 @@
+# Generuje Tuist (`tuist generate`)
+*.xcodeproj
+*.xcworkspace
+Derived/
+.build/
+.swiftpm/
+xcuserdata/

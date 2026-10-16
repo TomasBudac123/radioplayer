@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vygenerované z localization/strings.json (tools/gen-strings.py) – neupravuj ručne. -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="en" />
+    <locale android:name="sk" />
+    <locale android:name="cs" />
+    <locale android:name="de" />
+    <locale android:name="es" />
+    <locale android:name="fr" />
+    <locale android:name="it" />
+    <locale android:name="pl" />
+    <locale android:name="hu" />
+    <locale android:name="pt" />
+</locale-config>

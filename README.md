@@ -11,6 +11,29 @@ v zariadení a sú na hlavnej obrazovke – ťuknutím sa hneď pustia.
 
 Bez build kroku a bez závislostí – čisté HTML/CSS/JS.
 
+## Natívne aplikácie
+
+| Platforma | Priečinok | Technológie | V aute |
+| --- | --- | --- | --- |
+| iOS | [`ios/`](ios/README.md) | SwiftUI, The Composable Architecture (Point-Free) | CarPlay |
+| Android | [`android/`](android/README.md) | Kotlin, Jetpack Compose, Media3 | Android Auto |
+
+Obe appky zdieľajú dizajnové tokeny ([`design/tokens.json`](design/tokens.json)) – neutrálnu paletu
+pre svetlý aj tmavý režim, kde farbu prinášajú len logá rádií – a formát zálohy obľúbených,
+takže súbor exportovaný z webu sa dá importovať v telefóne a naopak.
+
+**Preklady:** angličtina, slovenčina, čeština, nemčina, španielčina, francúzština, taliančina, poľština,
+maďarčina a portugalčina. Texty oboch appiek sú v jednej tabuľke
+[`localization/strings.json`](localization/strings.json); po úprave pregeneruj zdroje pre iOS aj Android:
+
+```bash
+python3 tools/gen-strings.py
+```
+
+**Hlasové ovládanie:** „Siri, pusti Rádio Expres v Rádiu“ (iPhone aj CarPlay) a „Hey Google, pusti … v Rádiu“
+(Android aj Android Auto). Hľadá sa najprv presný názov v obľúbených, potom žáner („pusti jazz“),
+potom čiastočná zhoda s obľúbeným rádiom a nakoniec celá databáza.
+
 ## Lokálne spustenie
 
 ```bash

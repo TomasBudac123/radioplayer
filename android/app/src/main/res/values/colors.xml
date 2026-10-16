@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- design/tokens.json – svetlý režim -->
+    <color name="rp_background">#F6F6F7</color>
+    <color name="rp_icon_foreground">#F3F3F5</color>
+</resources>

@@ -3,7 +3,6 @@
 // ---------- Stav ----------
 const LS_FAVS = 'radio.favorites.v1';
 const LS_LAST = 'radio.last.v1';
-const LS_COUNTRY = 'radio.country.v1';
 
 const $ = (s) => document.querySelector(s);
 const audio = $('#audio');
@@ -348,7 +347,6 @@ if ('mediaSession' in navigator) {
 const PAGE = 40;
 let searchSeq = 0;
 let debounce;
-const LS_TAG = 'radio.tag.v1';
 
 // Vybrané žánre – surové tagy v Radio Browser sú nejednotné, preto ponúkame overený zoznam
 const GENRES = [
@@ -368,8 +366,6 @@ const GENRES = [
 function loadGenres() {
   const sel = $('#tag');
   for (const [value, label] of GENRES) sel.add(new Option(label, value));
-  const saved = load(LS_TAG, '');
-  if (GENRES.some(([v]) => v === saved)) sel.value = saved;
 }
 
 function searchParams() {
@@ -434,8 +430,6 @@ function renderResults() {
 async function loadCountries() {
   const sel = $('#country');
   const names = new Intl.DisplayNames(['sk'], { type: 'region' });
-  const saved = load(LS_COUNTRY, null);
-  const guess = (navigator.language.split('-')[1] || 'SK').toUpperCase();
   try {
     const data = await api('countries', { hidebroken: 'true' });
     const list = data
@@ -455,8 +449,6 @@ async function loadCountries() {
       .sort((a, b) => a.label.localeCompare(b.label, 'sk'))
       .forEach((c) => sel.add(new Option(`${flag(c.code)} ${c.label} (${c.n})`, c.code)));
   } catch {}
-  const want = saved ?? guess;
-  if ([...sel.options].some((o) => o.value === want)) sel.value = want;
 }
 
 function flag(cc) {
@@ -473,11 +465,9 @@ $('#q').addEventListener('input', () => {
   debounce = setTimeout(() => search(), 450);
 });
 $('#tag').addEventListener('change', () => {
-  save(LS_TAG, $('#tag').value);
   search();
 });
 $('#country').addEventListener('change', () => {
-  save(LS_COUNTRY, $('#country').value);
   search();
 });
 $('#moreBtn').addEventListener('click', () => search(true));

@@ -35,3 +35,12 @@ ako natívna appka a hrá aj na pozadí / pri zamknutom displeji.
 - Niektoré rádiá vysielajú len cez `http://`. Na stránke cez HTTPS ich Safari môže zablokovať (mixed content) –
   aplikácia najprv skúsi `https://` verziu streamu a potom pôvodnú adresu.
 - Ikony sa generujú skriptom `node tools/make-icons.mjs`.
+
+## Plagát
+
+V priečinku `poster/` je plagát s krátkym popisom aplikácie a QR kódom (`poster/radio-plagat.png`, A4 pri 300 DPI).
+Nanovo sa vyrenderuje (potrebuje Google Chrome a bežiaci lokálny server):
+
+```bash
+node poster/render.mjs
+```

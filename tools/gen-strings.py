@@ -3,8 +3,8 @@
 
     python3 tools/gen-strings.py
 
-iOS:     ios/RadioPackage/Sources/L10n/Resources/<lang>.lproj/Localizable.strings
-         ios/RadioPackage/Sources/L10n/L10n.swift (typované prístupy)
+iOS:     ios/AirwavesPackage/Sources/L10n/Resources/<lang>.lproj/Localizable.strings
+         ios/AirwavesPackage/Sources/L10n/L10n.swift (typované prístupy)
          ios/App/Resources/<lang>.lproj/InfoPlist.strings
 Android: android/app/src/main/res/values[-<lang>]/strings.xml
          android/app/src/main/res/xml/locales_config.xml
@@ -50,7 +50,7 @@ def swift_name(key):
 
 def write_ios():
     strings = for_platform("ios")
-    resources = ROOT / "ios/RadioPackage/Sources/L10n/Resources"
+    resources = ROOT / "ios/AirwavesPackage/Sources/L10n/Resources"
     for lang in LANGUAGES:
         folder = resources / f"{lang}.lproj"
         folder.mkdir(parents=True, exist_ok=True)
@@ -103,7 +103,7 @@ public enum L10n {{
   }}
 }}
 """
-    (ROOT / "ios/RadioPackage/Sources/L10n/L10n.swift").write_text(source, encoding="utf-8")
+    (ROOT / "ios/AirwavesPackage/Sources/L10n/L10n.swift").write_text(source, encoding="utf-8")
 
 
 # ---------- Android ----------

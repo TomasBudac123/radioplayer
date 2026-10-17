@@ -1,7 +1,7 @@
 import ProjectDescription
 
 /// Bundle ID musí byť unikátny v celom App Store; iný sa dá nastaviť cez `TUIST_BUNDLE_ID=…`.
-let bundleID = Environment.bundleId.getString(default: "sk.tomasbudac.radio")
+let bundleID = Environment.bundleId.getString(default: "sk.tomasbudac.airwaves")
 
 /// Tím na podpisovanie, napr. `TUIST_TEAM_ID=ABCDE12345 tuist generate`.
 let teamID = Environment.teamId.getString(default: "")
@@ -34,15 +34,15 @@ let siriInfoPlist: [String: Plist.Value] = !isSiriEnabled ? [:] : [
   ],
 ]
 
-/// Tenký app target – všetka logika je v SPM balíku `RadioPackage`.
+/// Tenký app target – všetka logika je v SPM balíku `AirwavesPackage`.
 let project = Project(
-  name: "Radio",
+  name: "Airwaves",
   options: .options(
     defaultKnownRegions: ["en", "sk", "cs", "de", "es", "fr", "it", "pl", "hu", "pt"],
     developmentRegion: "en"
   ),
   packages: [
-    .local(path: "RadioPackage")
+    .local(path: "AirwavesPackage")
   ],
   settings: .settings(
     base: [
@@ -52,7 +52,7 @@ let project = Project(
   ),
   targets: [
     .target(
-      name: "Radio",
+      name: "Airwaves",
       destinations: [.iPhone, .iPad],
       product: .app,
       bundleId: bundleID,

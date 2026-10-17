@@ -365,7 +365,7 @@ function updateMediaSession() {
   navigator.mediaSession.metadata = new MediaMetadata({
     title: s.name,
     artist: [countryName(s), s.tags].filter(Boolean).join(' · ') || 'Internetové rádio',
-    album: 'Rádio',
+    album: 'Airwaves',
     artwork: art ? [{ src: art, sizes: '512x512' }] : [{ src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }],
   });
 }
@@ -518,8 +518,8 @@ $('#moreBtn').addEventListener('click', () => search(true));
 
 // ---------- Nastavenia ----------
 $('#exportBtn').addEventListener('click', async () => {
-  const json = JSON.stringify({ app: 'radio', version: 1, favorites: state.favs }, null, 2);
-  const file = new File([json], 'radio-oblubene.json', { type: 'application/json' });
+  const json = JSON.stringify({ app: 'airwaves', version: 1, favorites: state.favs }, null, 2);
+  const file = new File([json], 'airwaves-favorites.json', { type: 'application/json' });
   if (navigator.canShare?.({ files: [file] })) {
     try { await navigator.share({ files: [file], title: 'Obľúbené rádiá' }); return; } catch (e) { if (e.name === 'AbortError') return; }
   }

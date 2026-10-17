@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "sk.radioplayer.app"
+    namespace = "sk.tomasbudac.airwaves"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "sk.tomasbudac.radio"
+        applicationId = "sk.tomasbudac.airwaves"
         minSdk = 26
         targetSdk = 36
         versionCode = 1

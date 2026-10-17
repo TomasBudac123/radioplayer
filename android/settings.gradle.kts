@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Radio"
+rootProject.name = "Airwaves"
 include(":app")

@@ -1,4 +1,4 @@
-# Rádio
+# Airwaves
 
 Webová aplikácia (PWA) na počúvanie internetových rádií z celého sveta. Rádiá sa hľadajú cez
 verejnú databázu [radio-browser.info](https://www.radio-browser.info), obľúbené sa ukladajú
@@ -11,9 +11,9 @@ v zariadení a sú na hlavnej obrazovke – ťuknutím sa hneď pustia.
 
 Bez build kroku a bez závislostí – čisté HTML/CSS/JS.
 
-## Natívne aplikácie – Airwaves
+## Natívne aplikácie
 
-Natívne appky sa volajú **Airwaves** (jedinečný názov, aby ho Siri nezamieňala so systémovým Apple Radio).
+Web aj natívne appky sa volajú **Airwaves** – jedinečný názov, aby ho Siri nezamieňala so systémovým Apple Radio.
 
 | Platforma | Priečinok | Technológie | V aute |
 | --- | --- | --- | --- |
@@ -63,7 +63,7 @@ ako natívna appka a hrá aj na pozadí / pri zamknutom displeji.
 
 ## Plagát
 
-V priečinku `poster/` je plagát s krátkym popisom aplikácie a QR kódom (`poster/radio-plagat.png`, A4 pri 300 DPI).
+V priečinku `poster/` je plagát s krátkym popisom aplikácie a QR kódom (`poster/airwaves-plagat.png`, A4 pri 300 DPI).
 Nanovo sa vyrenderuje (potrebuje Google Chrome a bežiaci lokálny server):
 
 ```bash

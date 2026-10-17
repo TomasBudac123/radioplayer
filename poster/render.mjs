@@ -8,7 +8,7 @@ import { join } from 'node:path';
 
 const CHROME = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const URL_ = process.env.POSTER_URL || 'http://localhost:5173/poster/poster.html';
-const OUT = new URL('./radio-plagat.png', import.meta.url);
+const OUT = new URL('./airwaves-plagat.png', import.meta.url);
 const PORT = 9333;
 
 const chrome = spawn(CHROME, [
